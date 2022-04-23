@@ -1,0 +1,21 @@
+SELECT [Doctor], [Professor], [Singer], [Actor]
+FROM
+(SELECT Name as EName FROM Occupations) as Source_Table
+PIVOT
+(MAX(NAME)
+For
+OCCUPATION in([Doctor], [Professor], [Singer], [Actor])
+) AS PIVOT_TABLE
+
+
+-------------------------------------------------------------------
+
+Select [Doctor],[Professor],[Singer],[Actor]
+From (
+Select Occupation,NAme,Row_Number() OVer(Partition By Occupation ORder by NAme)SNo
+From Occupations
+)tt
+Pivot (Max(NAme) For Occupation in ([Doctor],[Professor],[Singer],[Actor]))a
+
+
+have to undertand it yet.
